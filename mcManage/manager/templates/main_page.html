@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <a href="{% url 'manager:logout' %}">Logout</a>
+                <form action="{% url 'manager:start_server' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Start Minecraft Server</button>
+                </form>
+                <form action="{% url 'manager:stop_server' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Stop Minecraft Server</button>
+                </form>
+            {% else %}
+                <a href="{% url 'manager:login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <h2>Welcome to the Main Page</h2>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+    <!-- Add your main page content here -->
+</body>
+</html>

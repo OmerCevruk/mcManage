@@ -50,11 +50,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mcManage.urls'
-
+TEMPLATESDIR = BASE_DIR / "manager" / "templates"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATESDIR,
+                 TEMPLATESDIR / "registration"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
